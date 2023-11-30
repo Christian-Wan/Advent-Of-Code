@@ -5,9 +5,10 @@ import java.security.MessageDigest;
 
 public class Main {
     public static void main(String[] args) throws FileNotFoundException {
+        String finalWord = "";
         File f = new File("map/thing");
-        Scanner s = new Scanner(f);
         for (int i = 0; i < 6; i++) {
+            Scanner s = new Scanner(f);
             Map<String, Integer> check = new TreeMap<>();
             while (s.hasNext()) {
                 String line = s.nextLine();
@@ -15,13 +16,20 @@ public class Main {
                 check.putIfAbsent(letter, 0);
                 check.replace(letter, check.get(letter) + 1);
             }
-            String keys = Arrays.toString(check.keySet().toArray()).substring(1, check.keySet().toArray().toString().length() - 2);
-            System.out.println(keys);
-            for (int x = 0; x < check.size(); x++){
-                System.out.println(x);
+            String keys = Arrays.toString(check.keySet().toArray()).substring(1, Arrays.toString(check.keySet().toArray()).length() - 1);
+            int max = 0;
+            String letter = "";
+            for (int x = 0; x < keys.length(); x += 3){
+                if (check.get(keys.substring(x, x + 1)) > max) {
+                    letter = keys.substring(x, x + 1);
+                    max = check.get(keys.substring(x, x + 1));
+                }
 
             }
+            System.out.println(check);
+            finalWord += letter;
 
         }
+        System.out.println(finalWord);
     }
 }
