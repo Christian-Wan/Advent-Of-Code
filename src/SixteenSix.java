@@ -1,12 +1,14 @@
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.util.*;
-import java.security.MessageDigest;
+import java.util.Arrays;
+import java.util.Map;
+import java.util.Scanner;
+import java.util.TreeMap;
 
-public class Main {
+public class SixteenSix {
     public static void main(String[] args) throws FileNotFoundException {
         String finalWord = "";
-        File f = new File("map/thing");
+        File f = new File("Sixteen/six");
         for (int i = 0; i < 6; i++) {
             Scanner s = new Scanner(f);
             Map<String, Integer> check = new TreeMap<>();
