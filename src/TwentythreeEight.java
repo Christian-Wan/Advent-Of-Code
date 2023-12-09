@@ -21,7 +21,6 @@ public class TwentythreeEight {
         }
         HashMap<String, String[]> nodes = makeMap(file);
         String[] nodeKeys = Arrays.toString(nodes.keySet().toArray()).substring(1, Arrays.toString(nodes.keySet().toArray()).length() - 1).split(", ");
-        System.out.println(Arrays.toString(nodeKeys));
         ArrayList<String> startNodes = new ArrayList<>();
         for (int i = 0; i < nodeKeys.length; i++) {
             if (nodeKeys[i].charAt(2) == 'A') {
@@ -34,28 +33,44 @@ public class TwentythreeEight {
                 endNodes.add(nodeKeys[i]);
             }
         }
-        long count = 0;
-        int index = 0;
-        System.out.println(startNodes);
-        System.out.println(endNodes);
-        while (!allOnFinal(startNodes, endNodes)) {
-            if (count % 1000000 == 0) {
-                System.out.println(count);
-            }
-            for (int i = 0; i < startNodes.size(); i++) {
-                String currentlyOn = startNodes.get(i);
-                startNodes.set(i, moveNodes(steps, currentlyOn, index, nodes));
-            }
-            count++;
-            if (index == steps.length - 1) {
-                index = 0;
-            } else {
-                index++;
-            }
 
+        ArrayList<Integer> beforeLoop = new ArrayList<>();
+        ArrayList<String> beenTo = new ArrayList<>();
+
+        for (int i = 0; i < startNodes.size(); i++) {
+            int count = 0;
+            int storage = 0;
+            int index = 0;
+            String test = startNodes.get(i);
+            beenTo = new ArrayList<>();
+            while (!beenTo.contains(test) || !endNodes.contains(test)) {
+                beenTo.add(test);
+                if (endNodes.contains(test)) {
+                    storage = count;
+                }
+                test = moveNodes(steps, test, index, nodes);
+                count++;
+                if (index == steps.length - 1) {
+                    index = 0;
+                } else {
+                    index++;
+                }
+            }
+            beforeLoop.add(storage);
         }
-        System.out.println(count);
 
+        long total = beforeLoop.get(0);
+        for (int i = 1; i < beforeLoop.size(); i++) {
+            long gcd = 0;
+            for (long x = beforeLoop.get(i); x > 0; x--) {
+                if (total % x == 0 && beforeLoop.get(i) % x == 0) {
+                    gcd = x;
+                    break;
+                }
+            }
+            total = (total * beforeLoop.get(i)) / gcd;
+        }
+        System.out.println(total);
     }
 
     public static HashMap<String, String[]> makeMap(String file) {
@@ -77,14 +92,5 @@ public class TwentythreeEight {
         } else {
             return nodes.get(currentlyOn)[1];
         }
-    }
-
-    public static boolean allOnFinal(ArrayList<String> currentNodes, ArrayList<String> endNodes) {
-        for (int i = 0; i < currentNodes.size(); i++) {
-            if (!endNodes.contains(currentNodes.get(i))) {
-                return false;
-            }
-        }
-        return true;
     }
 }
