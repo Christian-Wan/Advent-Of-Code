@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 
-public class TwentythreeThree {
+public class Year23_Day3 {
     public static void main(String[] args) throws FileNotFoundException {
 
 
@@ -45,7 +45,7 @@ public class TwentythreeThree {
     }
 
     public static String[][] makeSchematic() throws FileNotFoundException {
-        File f = new File("Twentythree/three");
+        File f = new File("23/3");
         Scanner s = new Scanner(f);
         String[][] schematic = new String[140][140];
 

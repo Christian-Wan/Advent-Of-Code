@@ -1,6 +1,6 @@
 import java.io.FileNotFoundException;
 
-public class TwentythreeSix {
+public class Year23_Day6 {
     public static void main(String[] args) throws FileNotFoundException {
         int time = 46689866;
         String part1 = "3581054";

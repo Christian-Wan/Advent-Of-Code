@@ -5,9 +5,9 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Scanner;
 
-public class TwentythreeEight {
+public class Year23_Day8 {
     public static void main(String[] args) throws FileNotFoundException {
-        File f = new File("Twentythree/eight");
+        File f = new File("23/8");
         Scanner s = new Scanner(f);
         String line = s.nextLine();
         String[] steps = new String[line.length()];

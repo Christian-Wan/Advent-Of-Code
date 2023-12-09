@@ -2,9 +2,9 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 
-public class SeventeenOne {
+public class Year17_Day1 {
     public static void main(String[] args) throws FileNotFoundException {
-        File f = new File("Seventeen/one");
+        File f = new File("17/1");
         Scanner s = new Scanner(f);
         String line = s.nextLine();
         String line2 = line.substring(line.length() / 2) + line.substring(0, line.length() / 2);

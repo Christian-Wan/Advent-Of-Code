@@ -1,13 +1,12 @@
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Scanner;
 
-public class TwentythreeFour {
+public class Year23_Day4 {
     public static void main(String[] args) throws FileNotFoundException {
 
-        File f = new File("Twentythree/four");
+        File f = new File("23/4");
         Scanner s = new Scanner(f);
         String[] winning;
         String[] yours;

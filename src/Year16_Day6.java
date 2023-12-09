@@ -5,10 +5,10 @@ import java.util.Map;
 import java.util.Scanner;
 import java.util.TreeMap;
 
-public class SixteenSix {
+public class Year16_Day6 {
     public static void main(String[] args) throws FileNotFoundException {
         String finalWord = "";
-        File f = new File("Sixteen/six");
+        File f = new File("16/6");
         for (int i = 0; i < 8; i++) {
             Scanner s = new Scanner(f);
             Map<String, Integer> check = new TreeMap<>();

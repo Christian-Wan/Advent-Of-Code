@@ -2,9 +2,9 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 
-public class FifteenSix {
+public class Year15_Day6 {
     public static void main(String[] args) throws FileNotFoundException {
-        File f = new File("Fifteen/six");
+        File f = new File("15/6");
         Scanner s = new Scanner(f);
         int[][] lights = new int[1000][1000];
         int count = 0;

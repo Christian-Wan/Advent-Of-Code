@@ -1,11 +1,10 @@
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.util.ArrayList;
 import java.util.Scanner;
 
-public class TwentytwoOne {
+public class Year22_Day1 {
     public static void main(String[] args) throws FileNotFoundException {
-        File f = new File("Twentytwo/one");
+        File f = new File("22/1");
         Scanner s = new Scanner(f);
 
         int[] highest = {0, 0, 0};

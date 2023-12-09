@@ -1,12 +1,11 @@
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Scanner;
 
-public class TwentythreeFive {
+public class Year23_Day5 {
     public static void main(String[] args) throws FileNotFoundException {
-        File f = new File("Twentythree/five");
+        File f = new File("23/5");
         Scanner s = new Scanner(f);
         String line = s.nextLine();
         String[] seeds = line.substring(line.indexOf(":") + 2).split(" ");

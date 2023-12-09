@@ -4,9 +4,9 @@ import java.security.KeyException;
 import java.util.HashMap;
 import java.util.Scanner;
 
-public class TwentythreeOne {
+public class Year23_Day1 {
     public static void main(String[] args) throws FileNotFoundException, KeyException {
-        File f = new File("Twentythree/one");
+        File f = new File("23/1");
         Scanner s = new Scanner(f);
         int total = 0;
         String letterFormat = "";

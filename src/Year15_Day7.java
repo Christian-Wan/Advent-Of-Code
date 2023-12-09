@@ -1,12 +1,11 @@
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.util.BitSet;
 import java.util.HashMap;
 import java.util.Scanner;
 
-public class FifteenSeven {
+public class Year15_Day7 {
     public static void main(String[] args) throws FileNotFoundException {
-        File f = new File("Fifteen/seven");
+        File f = new File("15/7");
         Scanner s = new Scanner(f);
         String file = "";
         HashMap<String, Integer> thing = new HashMap<>();

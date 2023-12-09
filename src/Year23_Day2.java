@@ -4,10 +4,10 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Scanner;
 
-public class TwentythreeTwo {
+public class Year23_Day2 {
     public static void main(String[] args) throws FileNotFoundException {
 
-        File f = new File("Twentythree/two");
+        File f = new File("23/2");
         Scanner s = new Scanner(f);
         int total = 0;
 

@@ -4,9 +4,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Scanner;
 
-public class TwentythreeNine {
+public class Year23_Day9 {
     public static void main(String[] args) throws FileNotFoundException {
-        File f = new File("Twentythree/nine");
+        File f = new File("23/9");
         Scanner s = new Scanner(f);
         ArrayList<String[]> reports = new ArrayList<>();
         int total = 0;

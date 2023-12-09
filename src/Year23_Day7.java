@@ -3,19 +3,19 @@ import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class TwentythreeSeven {
+public class Year23_Day7 {
     public static void main(String[] args) throws FileNotFoundException {
-        File f = new File("Twentythree/seven");
+        File f = new File("23/7");
         Scanner s = new Scanner(f);
-        ArrayList<TwentythreeSevenObject> hands = new ArrayList<>();
+        ArrayList<Year23_Day7_Object> hands = new ArrayList<>();
         int total = 0;
         while (s.hasNext()) {
             String line = s.nextLine();
-            hands.add(new TwentythreeSevenObject(line.substring(0, 5), Integer.parseInt(line.substring(6))));
+            hands.add(new Year23_Day7_Object(line.substring(0, 5), Integer.parseInt(line.substring(6))));
         }
         for (int i = 0; i < hands.size() - 1; i++) {
-            TwentythreeSevenObject storage = null;
-            if (!TwentythreeSevenObject.firstBeatsSecond(hands.get(i), hands.get(i + 1))) {
+            Year23_Day7_Object storage = null;
+            if (!Year23_Day7_Object.firstBeatsSecond(hands.get(i), hands.get(i + 1))) {
                 storage = hands.get(i);
                 hands.set(i, hands.get(i + 1));
                 hands.set(i + 1, storage);

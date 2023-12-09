@@ -1,14 +1,12 @@
 import java.util.Arrays;
-import java.util.Collection;
-import java.util.Dictionary;
 import java.util.HashMap;
 
-public class TwentythreeSevenObject {
+public class Year23_Day7_Object {
     private String type;
     private String cards;
     private int bid;
 
-    public TwentythreeSevenObject(String cards, int bid) {
+    public Year23_Day7_Object(String cards, int bid) {
         this.cards = cards;
         this.bid = bid;
         type = findType();
@@ -62,7 +60,7 @@ public class TwentythreeSevenObject {
         return cards;
     }
 
-    public static boolean firstBeatsSecond(TwentythreeSevenObject hand1, TwentythreeSevenObject hand2) {
+    public static boolean firstBeatsSecond(Year23_Day7_Object hand1, Year23_Day7_Object hand2) {
         String typeRanking = "Five Four Full Three Two One High";
         String cardRanking = "A K Q T 9 8 7 6 5 4 3 2 J";
         if (typeRanking.indexOf(hand1.getType()) < typeRanking.indexOf(hand2.getType())) {
