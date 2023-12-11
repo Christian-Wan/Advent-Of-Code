@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 
-public class Year23_Day3 {
+public class Year23_Day03 {
     public static void main(String[] args) throws FileNotFoundException {
 
 

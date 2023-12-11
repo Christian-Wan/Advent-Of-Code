@@ -5,7 +5,7 @@ import java.util.Map;
 import java.util.Scanner;
 import java.util.TreeMap;
 
-public class Year16_Day6 {
+public class Year16_Day06 {
     public static void main(String[] args) throws FileNotFoundException {
         String finalWord = "";
         File f = new File("16/6");

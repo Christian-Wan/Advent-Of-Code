@@ -3,7 +3,7 @@ import java.io.FileNotFoundException;
 import java.util.HashMap;
 import java.util.Scanner;
 
-public class Year15_Day7 {
+public class Year15_Day07 {
     public static void main(String[] args) throws FileNotFoundException {
         File f = new File("15/7");
         Scanner s = new Scanner(f);

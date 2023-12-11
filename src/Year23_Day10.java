@@ -8,7 +8,7 @@ public class Year23_Day10 {
     public static void main(String[] args) throws FileNotFoundException {
         File f = new File("23/10");
         Scanner s = new Scanner(f);
-        String[][] grid = new String[140][140];
+        String[][] grid = new String[10][20];
         String[] info = new String[4];
         int[][] pipe = new int[grid.length][grid[0].length];
         for (int i = 0; i < grid.length; i++) {
@@ -99,136 +99,154 @@ public class Year23_Day10 {
         System.out.println("ans: " + count / 2);
 //------------------------------------------------------------------------------------------------------
         count = 0;
-        for (int i = 0; i < pipe.length; i++) {
-            if (pipe[i][0] != 1) {
-                pipe[i][0] = 9;
-            }
-            if (pipe[i][pipe[0].length - 1] != 1) {
-                pipe[i][pipe[0].length - 1] = 9;
-            }
-        }
-        for (int i = 0; i < pipe[0].length; i++) {
-            if (pipe[0][i] != 1) {
-                pipe[0][i] = 9;
-            }
-            if (pipe[pipe.length - 1][i] != 1) {
-                pipe[pipe.length - 1][i] = 9;
-            }
-        }
+//        for (int i = 0; i < pipe.length; i++) {
+//            if (pipe[i][0] != 1) {
+//                pipe[i][0] = 9;
+//            }
+//            if (pipe[i][pipe[0].length - 1] != 1) {
+//                pipe[i][pipe[0].length - 1] = 9;
+//            }
+//        }
+//        for (int i = 0; i < pipe[0].length; i++) {
+//            if (pipe[0][i] != 1) {
+//                pipe[0][i] = 9;
+//            }
+//            if (pipe[pipe.length - 1][i] != 1) {
+//                pipe[pipe.length - 1][i] = 9;
+//            }
+//        }
+//        for (int i = 0; i < pipe.length; i++) {
+//            for (int x = 0; x < pipe[0].length; x++) {
+//                System.out.print(pipe[i][x]);
+//            }
+//            System.out.println();
+//        }
+//
+//        int[][] oldPipes = new int[pipe.length][pipe[0].length];
+//        while (!Arrays.deepEquals(oldPipes, pipe)) {
+//            for (int i = 0; i < pipe.length; i++) {
+//                for (int x = 0; x < pipe[0].length; x++) {
+//                    oldPipes[i][x] = pipe[i][x];
+//                }
+//            }
+//
+//            for (int i = 0; i < pipe.length; i++) {
+//                for (int x = 0; x < pipe[0].length; x++) {
+//                    if (pipe[i][x] != 1) {
+//                        try {
+//                            if (pipe[i + 1][x] == 9) {
+//                                pipe[i][x] = 9;
+//                            }
+//                        } catch (ArrayIndexOutOfBoundsException e) {
+//
+//                        }
+//                        try {
+//                            if (pipe[i - 1][x] == 9) {
+//                                pipe[i][x] = 9;
+//                            }
+//                        } catch (ArrayIndexOutOfBoundsException e) {
+//
+//                        }
+//                        try {
+//                            if (pipe[i][x + 1] == 9) {
+//                                pipe[i][x] = 9;
+//                            }
+//                        } catch (ArrayIndexOutOfBoundsException e) {
+//
+//                        }
+//                        try {
+//                            if (pipe[i][x - 1] == 9) {
+//                                pipe[i][x] = 9;
+//                            }
+//                        } catch (ArrayIndexOutOfBoundsException e) {
+//
+//                        }
+//                    }
+//                }
+//            }
+//        }
+//        System.out.println();
+//        for (int i = 0; i < pipe.length; i++) {
+//            for (int x = 0; x < pipe[0].length; x++) {
+//                System.out.print(pipe[i][x]);
+//            }
+//            System.out.println();
+//        }
+//        pipe = check(pipe, grid);
+//        oldPipes = new int[pipe.length][pipe[0].length];
+//        while (!Arrays.deepEquals(oldPipes, pipe)) {
+//            for (int i = 0; i < pipe.length; i++) {
+//                for (int x = 0; x < pipe[0].length; x++) {
+//                    oldPipes[i][x] = pipe[i][x];
+//                }
+//            }
+//
+//            for (int i = 0; i < pipe.length; i++) {
+//                for (int x = 0; x < pipe[0].length; x++) {
+//                    if (pipe[i][x] != 1) {
+//                        try {
+//                            if (pipe[i + 1][x] == 9) {
+//                                pipe[i][x] = 9;
+//                            }
+//                        } catch (ArrayIndexOutOfBoundsException e) {
+//
+//                        }
+//                        try {
+//                            if (pipe[i - 1][x] == 9) {
+//                                pipe[i][x] = 9;
+//                            }
+//                        } catch (ArrayIndexOutOfBoundsException e) {
+//
+//                        }
+//                        try {
+//                            if (pipe[i][x + 1] == 9) {
+//                                pipe[i][x] = 9;
+//                            }
+//                        } catch (ArrayIndexOutOfBoundsException e) {
+//
+//                        }
+//                        try {
+//                            if (pipe[i][x - 1] == 9) {
+//                                pipe[i][x] = 9;
+//                            }
+//                        } catch (ArrayIndexOutOfBoundsException e) {
+//
+//                        }
+//                    }
+//                }
+//            }
+//        }
+//        System.out.println();
+//        for (int i = 0; i < pipe.length; i++) {
+//            for (int x = 0; x < pipe[0].length; x++) {
+//                System.out.print(pipe[i][x]);
+//            }
+//            System.out.println();
+//        }
+        String noWork = "|| "
         for (int i = 0; i < pipe.length; i++) {
             for (int x = 0; x < pipe[0].length; x++) {
-                System.out.print(pipe[i][x]);
-            }
-            System.out.println();
-        }
-
-        int[][] oldPipes = new int[pipe.length][pipe[0].length];
-        while (!Arrays.deepEquals(oldPipes, pipe)) {
-            for (int i = 0; i < pipe.length; i++) {
-                for (int x = 0; x < pipe[0].length; x++) {
-                    oldPipes[i][x] = pipe[i][x];
-                }
-            }
-
-            for (int i = 0; i < pipe.length; i++) {
-                for (int x = 0; x < pipe[0].length; x++) {
-                    if (pipe[i][x] != 1) {
-                        try {
-                            if (pipe[i + 1][x] == 9) {
-                                pipe[i][x] = 9;
-                            }
-                        } catch (ArrayIndexOutOfBoundsException e) {
-
-                        }
-                        try {
-                            if (pipe[i - 1][x] == 9) {
-                                pipe[i][x] = 9;
-                            }
-                        } catch (ArrayIndexOutOfBoundsException e) {
-
-                        }
-                        try {
-                            if (pipe[i][x + 1] == 9) {
-                                pipe[i][x] = 9;
-                            }
-                        } catch (ArrayIndexOutOfBoundsException e) {
-
-                        }
-                        try {
-                            if (pipe[i][x - 1] == 9) {
-                                pipe[i][x] = 9;
-                            }
-                        } catch (ArrayIndexOutOfBoundsException e) {
-
+                int intersections = 0;
+                boolean stillTouching = false;
+                for (int a = x; a < pipe[0].length - 1; a++) {
+                    if (pipe[i][x] == 0) {
+                        if ((pipe[i][a] + pipe[i][a + 1]) == 1) {
+                            intersections++;
+                            a++;
                         }
                     }
                 }
-            }
-        }
-        System.out.println();
-        for (int i = 0; i < pipe.length; i++) {
-            for (int x = 0; x < pipe[0].length; x++) {
-                System.out.print(pipe[i][x]);
-            }
-            System.out.println();
-        }
-        pipe = check(pipe, grid);
-        oldPipes = new int[pipe.length][pipe[0].length];
-        while (!Arrays.deepEquals(oldPipes, pipe)) {
-            for (int i = 0; i < pipe.length; i++) {
-                for (int x = 0; x < pipe[0].length; x++) {
-                    oldPipes[i][x] = pipe[i][x];
-                }
-            }
-
-            for (int i = 0; i < pipe.length; i++) {
-                for (int x = 0; x < pipe[0].length; x++) {
-                    if (pipe[i][x] != 1) {
-                        try {
-                            if (pipe[i + 1][x] == 9) {
-                                pipe[i][x] = 9;
-                            }
-                        } catch (ArrayIndexOutOfBoundsException e) {
-
-                        }
-                        try {
-                            if (pipe[i - 1][x] == 9) {
-                                pipe[i][x] = 9;
-                            }
-                        } catch (ArrayIndexOutOfBoundsException e) {
-
-                        }
-                        try {
-                            if (pipe[i][x + 1] == 9) {
-                                pipe[i][x] = 9;
-                            }
-                        } catch (ArrayIndexOutOfBoundsException e) {
-
-                        }
-                        try {
-                            if (pipe[i][x - 1] == 9) {
-                                pipe[i][x] = 9;
-                            }
-                        } catch (ArrayIndexOutOfBoundsException e) {
-
-                        }
-                    }
-                }
-            }
-        }
-        System.out.println();
-        for (int i = 0; i < pipe.length; i++) {
-            for (int x = 0; x < pipe[0].length; x++) {
-                System.out.print(pipe[i][x]);
-            }
-            System.out.println();
-        }
-        for (int i = 0; i < pipe.length; i++) {
-            for (int x = 0; x < pipe[0].length; x++) {
-                if (pipe[i][x] == 0) {
+                if (intersections % 2 == 1) {
+                    pipe[i][x] = 9;
                     count++;
                 }
             }
+        }
+        for (int i = 0; i < pipe.length; i++) {
+            for (int x = 0; x < pipe[0].length; x++) {
+                System.out.print(pipe[i][x]);
+            }
+            System.out.println();
         }
 
         System.out.println("ans: " + count);
@@ -376,97 +394,97 @@ public class Year23_Day10 {
         return filler;
     }
 
-    public static int[][] check(int[][] pipe, String[][] grid) {
-        ArrayList<String> acceptableHorizontal = new ArrayList<>();
-        acceptableHorizontal.add("--");
-        acceptableHorizontal.add("L-");
-        acceptableHorizontal.add("-J");
-        acceptableHorizontal.add("-7");
-        acceptableHorizontal.add("F-");
-//        acceptableHorizontal.add("S-");
-//        acceptableHorizontal.add("-S");
-//        acceptableHorizontal.add("LS");
-//        acceptableHorizontal.add("S7");
-//        acceptableHorizontal.add("SJ");
-//        acceptableHorizontal.add("FS");
-        acceptableHorizontal.add("LJ");
-        acceptableHorizontal.add("L7");
-        acceptableHorizontal.add("FJ");
-        acceptableHorizontal.add("F7");
-        ArrayList<String> acceptableVertical = new ArrayList<>();
-        acceptableVertical.add("||");
-        acceptableVertical.add("|L");
-        acceptableVertical.add("|J");
-        acceptableVertical.add("7|");
-        acceptableVertical.add("F|");
-//        acceptableVertical.add("S|");
-//        acceptableVertical.add("|S");
-//        acceptableVertical.add("SL");
-//        acceptableVertical.add("7S");
-//        acceptableVertical.add("SJ");
-//        acceptableVertical.add("FS");
-        acceptableVertical.add("7L");
-        acceptableVertical.add("7J");
-        acceptableVertical.add("FJ");
-        acceptableVertical.add("FL");
-        for (int i = 0; i < pipe.length; i++) {
-            for (int x = 0; x < pipe[0].length; x++) {
-                boolean top1 = false;
-                boolean top2 = false;
-                boolean bot1 = false;
-                boolean bot2 = false;
-                boolean l1 = false;
-                boolean l2 = false;
-                boolean r1 = false;
-                boolean r2 = false;
-                if (pipe[i][x] == 0) {
-                    System.out.println(pipe[i][x]);
-                    for (int a = i; a < pipe.length; a++) {
-                        if (pipe[a][x - 1] == 1 && pipe[a][x] == 1 && acceptableHorizontal.contains(grid[a][x - 1] + grid[a][x])) {
-                            bot1 = true;
-                        }
-                        if (pipe[a][x] == 1 && pipe[a][x + 1] == 1 && acceptableHorizontal.contains(grid[a][x] + grid[a][x + 1])) {
-                            bot2 = true;
-                        }
-                    }
-                    for (int a = i; a >= 0; a--) {
-                        if (pipe[a][x - 1] == 1 && pipe[a][x] == 1 && acceptableHorizontal.contains(grid[a][x - 1] + grid[a][x])) {
-                            top1 = true;
-                        }
-                        if (pipe[a][x] == 1 && pipe[a][x + 1] == 1 && acceptableHorizontal.contains(grid[a][x] + grid[a][x + 1])) {
-                            top2 = true;
-                        }
-                    }
-                    for (int a = x; a < pipe[0].length; a++) {
-                        if (pipe[i - 1][a] == 1 && pipe[i][a] == 1 && acceptableVertical.contains(grid[i - 1][a] + grid[i][a])) {
-                            r1 = true;
-                        }
-                        if (pipe[i][a] == 1 && pipe[i + 1][a] == 1 && acceptableVertical.contains(grid[i][a] + grid[i + 1][a])) {
-                            r2 = true;
-                        }
-                    }
-                    for (int a = x; a >= 0; a--) {
-                        if (pipe[i - 1][a] == 1 && pipe[i][a] == 1 && acceptableVertical.contains(grid[i - 1][a] + grid[i][a])) {
-                            l1 = true;
-                        }
-                        if (pipe[i][a] == 1 && pipe[i + 1][a] == 1 && acceptableVertical.contains(grid[i][a] + grid[i + 1][a])) {
-                            l2 = true;
-                        }
-                    }
-                    System.out.println("top1" + top1);
-                    System.out.println("top2" + top2);
-                    System.out.println("bot1" + bot1);
-                    System.out.println("bot2" + bot2);
-                    System.out.println("r1" + r1);
-                    System.out.println("r2" + r2);
-                    System.out.println("l1" + l1);
-                    System.out.println("l2" + l2);
-                    if (!(top1 && top2 && bot1 && bot2 && r1 && r2 && l1 && l2)) {
-                        pipe[i][x] = 9;
-                    }
-                }
-            }
-        }
-        return pipe;
-    }
+//    public static int[][] check(int[][] pipe, String[][] grid) {
+//        ArrayList<String> acceptableHorizontal = new ArrayList<>();
+//        acceptableHorizontal.add("--");
+//        acceptableHorizontal.add("L-");
+//        acceptableHorizontal.add("-J");
+//        acceptableHorizontal.add("-7");
+//        acceptableHorizontal.add("F-");
+////        acceptableHorizontal.add("S-");
+////        acceptableHorizontal.add("-S");
+////        acceptableHorizontal.add("LS");
+////        acceptableHorizontal.add("S7");
+////        acceptableHorizontal.add("SJ");
+////        acceptableHorizontal.add("FS");
+//        acceptableHorizontal.add("LJ");
+//        acceptableHorizontal.add("L7");
+//        acceptableHorizontal.add("FJ");
+//        acceptableHorizontal.add("F7");
+//        ArrayList<String> acceptableVertical = new ArrayList<>();
+//        acceptableVertical.add("||");
+//        acceptableVertical.add("|L");
+//        acceptableVertical.add("|J");
+//        acceptableVertical.add("7|");
+//        acceptableVertical.add("F|");
+////        acceptableVertical.add("S|");
+////        acceptableVertical.add("|S");
+////        acceptableVertical.add("SL");
+////        acceptableVertical.add("7S");
+////        acceptableVertical.add("SJ");
+////        acceptableVertical.add("FS");
+//        acceptableVertical.add("7L");
+//        acceptableVertical.add("7J");
+//        acceptableVertical.add("FJ");
+//        acceptableVertical.add("FL");
+//        for (int i = 0; i < pipe.length; i++) {
+//            for (int x = 0; x < pipe[0].length; x++) {
+//                boolean top1 = false;
+//                boolean top2 = false;
+//                boolean bot1 = false;
+//                boolean bot2 = false;
+//                boolean l1 = false;
+//                boolean l2 = false;
+//                boolean r1 = false;
+//                boolean r2 = false;
+//                if (pipe[i][x] == 0) {
+//                    System.out.println(pipe[i][x]);
+//                    for (int a = i; a < pipe.length; a++) {
+//                        if (pipe[a][x - 1] == 1 && pipe[a][x] == 1 && acceptableHorizontal.contains(grid[a][x - 1] + grid[a][x])) {
+//                            bot1 = true;
+//                        }
+//                        if (pipe[a][x] == 1 && pipe[a][x + 1] == 1 && acceptableHorizontal.contains(grid[a][x] + grid[a][x + 1])) {
+//                            bot2 = true;
+//                        }
+//                    }
+//                    for (int a = i; a >= 0; a--) {
+//                        if (pipe[a][x - 1] == 1 && pipe[a][x] == 1 && acceptableHorizontal.contains(grid[a][x - 1] + grid[a][x])) {
+//                            top1 = true;
+//                        }
+//                        if (pipe[a][x] == 1 && pipe[a][x + 1] == 1 && acceptableHorizontal.contains(grid[a][x] + grid[a][x + 1])) {
+//                            top2 = true;
+//                        }
+//                    }
+//                    for (int a = x; a < pipe[0].length; a++) {
+//                        if (pipe[i - 1][a] == 1 && pipe[i][a] == 1 && acceptableVertical.contains(grid[i - 1][a] + grid[i][a])) {
+//                            r1 = true;
+//                        }
+//                        if (pipe[i][a] == 1 && pipe[i + 1][a] == 1 && acceptableVertical.contains(grid[i][a] + grid[i + 1][a])) {
+//                            r2 = true;
+//                        }
+//                    }
+//                    for (int a = x; a >= 0; a--) {
+//                        if (pipe[i - 1][a] == 1 && pipe[i][a] == 1 && acceptableVertical.contains(grid[i - 1][a] + grid[i][a])) {
+//                            l1 = true;
+//                        }
+//                        if (pipe[i][a] == 1 && pipe[i + 1][a] == 1 && acceptableVertical.contains(grid[i][a] + grid[i + 1][a])) {
+//                            l2 = true;
+//                        }
+//                    }
+//                    System.out.println("top1" + top1);
+//                    System.out.println("top2" + top2);
+//                    System.out.println("bot1" + bot1);
+//                    System.out.println("bot2" + bot2);
+//                    System.out.println("r1" + r1);
+//                    System.out.println("r2" + r2);
+//                    System.out.println("l1" + l1);
+//                    System.out.println("l2" + l2);
+//                    if (!(top1 && top2 && bot1 && bot2 && r1 && r2 && l1 && l2)) {
+//                        pipe[i][x] = 9;
+//                    }
+//                }
+//            }
+//        }
+//        return pipe;
+//    }
 }

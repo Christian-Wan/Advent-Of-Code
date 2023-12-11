@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Scanner;
 
-public class Year23_Day2 {
+public class Year23_Day02 {
     public static void main(String[] args) throws FileNotFoundException {
 
         File f = new File("23/2");

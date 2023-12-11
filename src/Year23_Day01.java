@@ -4,7 +4,7 @@ import java.security.KeyException;
 import java.util.HashMap;
 import java.util.Scanner;
 
-public class Year23_Day1 {
+public class Year23_Day01 {
     public static void main(String[] args) throws FileNotFoundException, KeyException {
         File f = new File("23/1");
         Scanner s = new Scanner(f);

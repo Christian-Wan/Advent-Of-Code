@@ -2,7 +2,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 
-public class Year17_Day1 {
+public class Year17_Day01 {
     public static void main(String[] args) throws FileNotFoundException {
         File f = new File("17/1");
         Scanner s = new Scanner(f);

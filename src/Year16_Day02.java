@@ -2,7 +2,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 
-public class Year16_Day2 {
+public class Year16_Day02 {
     public static void main(String[] args) throws FileNotFoundException {
         String[][] thing = {
                 {"0","0","1","0","0"},

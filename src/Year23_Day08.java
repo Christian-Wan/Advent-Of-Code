@@ -5,7 +5,7 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Scanner;
 
-public class Year23_Day8 {
+public class Year23_Day08 {
     public static void main(String[] args) throws FileNotFoundException {
         File f = new File("23/8");
         Scanner s = new Scanner(f);

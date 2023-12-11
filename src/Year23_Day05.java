@@ -3,7 +3,7 @@ import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class Year23_Day5 {
+public class Year23_Day05 {
     public static void main(String[] args) throws FileNotFoundException {
         File f = new File("23/5");
         Scanner s = new Scanner(f);

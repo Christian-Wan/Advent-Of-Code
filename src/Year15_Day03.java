@@ -4,7 +4,7 @@ import java.util.Scanner;
 import java.util.Set;
 import java.util.TreeSet;
 
-public class Year15_Day3 {
+public class Year15_Day03 {
     public static void main(String[] args) throws FileNotFoundException {
         File f = new File("15/3");
         Scanner s = new Scanner(f);
