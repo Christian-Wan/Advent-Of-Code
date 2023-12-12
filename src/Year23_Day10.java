@@ -8,7 +8,7 @@ public class Year23_Day10 {
     public static void main(String[] args) throws FileNotFoundException {
         File f = new File("23/10");
         Scanner s = new Scanner(f);
-        String[][] grid = new String[10][20];
+        String[][] grid = new String[9][10];
         String[] info = new String[4];
         int[][] pipe = new int[grid.length][grid[0].length];
         for (int i = 0; i < grid.length; i++) {
@@ -99,72 +99,73 @@ public class Year23_Day10 {
         System.out.println("ans: " + count / 2);
 //------------------------------------------------------------------------------------------------------
         count = 0;
-//        for (int i = 0; i < pipe.length; i++) {
-//            if (pipe[i][0] != 1) {
-//                pipe[i][0] = 9;
-//            }
-//            if (pipe[i][pipe[0].length - 1] != 1) {
-//                pipe[i][pipe[0].length - 1] = 9;
-//            }
-//        }
-//        for (int i = 0; i < pipe[0].length; i++) {
-//            if (pipe[0][i] != 1) {
-//                pipe[0][i] = 9;
-//            }
-//            if (pipe[pipe.length - 1][i] != 1) {
-//                pipe[pipe.length - 1][i] = 9;
-//            }
-//        }
-//        for (int i = 0; i < pipe.length; i++) {
-//            for (int x = 0; x < pipe[0].length; x++) {
-//                System.out.print(pipe[i][x]);
-//            }
-//            System.out.println();
-//        }
-//
-//        int[][] oldPipes = new int[pipe.length][pipe[0].length];
-//        while (!Arrays.deepEquals(oldPipes, pipe)) {
-//            for (int i = 0; i < pipe.length; i++) {
-//                for (int x = 0; x < pipe[0].length; x++) {
-//                    oldPipes[i][x] = pipe[i][x];
-//                }
-//            }
-//
-//            for (int i = 0; i < pipe.length; i++) {
-//                for (int x = 0; x < pipe[0].length; x++) {
-//                    if (pipe[i][x] != 1) {
-//                        try {
-//                            if (pipe[i + 1][x] == 9) {
-//                                pipe[i][x] = 9;
-//                            }
-//                        } catch (ArrayIndexOutOfBoundsException e) {
-//
-//                        }
-//                        try {
-//                            if (pipe[i - 1][x] == 9) {
-//                                pipe[i][x] = 9;
-//                            }
-//                        } catch (ArrayIndexOutOfBoundsException e) {
-//
-//                        }
-//                        try {
-//                            if (pipe[i][x + 1] == 9) {
-//                                pipe[i][x] = 9;
-//                            }
-//                        } catch (ArrayIndexOutOfBoundsException e) {
-//
-//                        }
-//                        try {
-//                            if (pipe[i][x - 1] == 9) {
-//                                pipe[i][x] = 9;
-//                            }
-//                        } catch (ArrayIndexOutOfBoundsException e) {
-//
-//                        }
-//                    }
-//                }
-//            }
-//        }
+        for (int i = 0; i < pipe.length; i++) {
+            if (pipe[i][0] != 1) {
+                pipe[i][0] = 9;
+            }
+            if (pipe[i][pipe[0].length - 1] != 1) {
+                pipe[i][pipe[0].length - 1] = 9;
+            }
+        }
+        for (int i = 0; i < pipe[0].length; i++) {
+            if (pipe[0][i] != 1) {
+                pipe[0][i] = 9;
+            }
+            if (pipe[pipe.length - 1][i] != 1) {
+                pipe[pipe.length - 1][i] = 9;
+            }
+        }
+        for (int i = 0; i < pipe.length; i++) {
+            for (int x = 0; x < pipe[0].length; x++) {
+                System.out.print(pipe[i][x]);
+            }
+            System.out.println();
+        }
+        System.out.println();
+
+        int[][] oldPipes = new int[pipe.length][pipe[0].length];
+        while (!Arrays.deepEquals(oldPipes, pipe)) {
+            for (int i = 0; i < pipe.length; i++) {
+                for (int x = 0; x < pipe[0].length; x++) {
+                    oldPipes[i][x] = pipe[i][x];
+                }
+            }
+
+            for (int i = 0; i < pipe.length; i++) {
+                for (int x = 0; x < pipe[0].length; x++) {
+                    if (pipe[i][x] != 1) {
+                        try {
+                            if (pipe[i + 1][x] == 9) {
+                                pipe[i][x] = 9;
+                            }
+                        } catch (ArrayIndexOutOfBoundsException e) {
+
+                        }
+                        try {
+                            if (pipe[i - 1][x] == 9) {
+                                pipe[i][x] = 9;
+                            }
+                        } catch (ArrayIndexOutOfBoundsException e) {
+
+                        }
+                        try {
+                            if (pipe[i][x + 1] == 9) {
+                                pipe[i][x] = 9;
+                            }
+                        } catch (ArrayIndexOutOfBoundsException e) {
+
+                        }
+                        try {
+                            if (pipe[i][x - 1] == 9) {
+                                pipe[i][x] = 9;
+                            }
+                        } catch (ArrayIndexOutOfBoundsException e) {
+
+                        }
+                    }
+                }
+            }
+        }
 //        System.out.println();
 //        for (int i = 0; i < pipe.length; i++) {
 //            for (int x = 0; x < pipe[0].length; x++) {
@@ -223,32 +224,123 @@ public class Year23_Day10 {
 //            }
 //            System.out.println();
 //        }
-        String noWork = "|| "
+        String noWork = "|| |L |F J| 7| JL JF 7F 7L |S S| SL SF JS 7S";
         for (int i = 0; i < pipe.length; i++) {
+            int indexOfLast = 0;
+            int indexOfFirst = 0;
+            for (int x = pipe[0].length - 1; x >= 0; x--) {
+                if (pipe[i][x] == 1) {
+                    indexOfLast = x;
+                    break;
+                }
+            }
+            for (int x = 0; x < pipe[0].length; x++) {
+                if (pipe[i][x] == 1) {
+                    indexOfFirst = x;
+                    break;
+                }
+            }
             for (int x = 0; x < pipe[0].length; x++) {
                 int intersections = 0;
-                boolean stillTouching = false;
+                boolean stillLine = false;
                 for (int a = x; a < pipe[0].length - 1; a++) {
                     if (pipe[i][x] == 0) {
-                        if ((pipe[i][a] + pipe[i][a + 1]) == 1) {
+
+                        if (pipe[i][a - 1] == 1 && (pipe[i][a] + pipe[i][a + 1] == 2 && noWork.contains(grid[i][a] + grid[i][a + 1]))) {
+                            intersections += 2;
+                            a += 2;
+//                            if (stillLine) {
+//                                intersections -= 1;
+//                            }
+                        }
+                        else if ((pipe[i][a] + pipe[i][a + 1] == 1 || pipe[i][a] + pipe[i][a + 1] == 10)) {
                             intersections++;
-                            a++;
+                            if (a == indexOfLast && stillLine) {
+                                System.out.println("ASD");
+                                intersections--;
+                            }
+
+                            stillLine = true;
+                        }
+                        try {
+                            if (pipe[i][a] == 0 || pipe[i][a] == 9) {
+                                stillLine = false;
+                            }
+                        }
+                        catch (ArrayIndexOutOfBoundsException e) {
+
                         }
                     }
                 }
+                if (intersections != 0) {
+                    System.out.println(intersections);
+                }
                 if (intersections % 2 == 1) {
-                    pipe[i][x] = 9;
-                    count++;
+                    pipe[i][x] = 5;
                 }
             }
         }
+//        oldPipes = new int[pipe.length][pipe[0].length];
+//        while (!Arrays.deepEquals(oldPipes, pipe)) {
+//            for (int i = 0; i < pipe.length; i++) {
+//                for (int x = 0; x < pipe[0].length; x++) {
+//                    oldPipes[i][x] = pipe[i][x];
+//                }
+//            }
+//
+//            for (int i = 0; i < pipe.length; i++) {
+//                for (int x = 0; x < pipe[0].length; x++) {
+//                    if (pipe[i][x] != 1) {
+//                        try {
+//                            if (pipe[i + 1][x] == 5) {
+//                                pipe[i][x] = 5;
+//                            }
+//                        } catch (ArrayIndexOutOfBoundsException e) {
+//
+//                        }
+//                        try {
+//                            if (pipe[i - 1][x] == 5) {
+//                                pipe[i][x] = 5;
+//                            }
+//                        } catch (ArrayIndexOutOfBoundsException e) {
+//
+//                        }
+//                        try {
+//                            if (pipe[i][x + 1] == 5) {
+//                                pipe[i][x] = 5;
+//                            }
+//                        } catch (ArrayIndexOutOfBoundsException e) {
+//
+//                        }
+//                        try {
+//                            if (pipe[i][x - 1] == 5) {
+//                                pipe[i][x] = 5;
+//                            }
+//                        } catch (ArrayIndexOutOfBoundsException e) {
+//
+//                        }
+//                    }
+//                }
+//            }
+//        }
         for (int i = 0; i < pipe.length; i++) {
             for (int x = 0; x < pipe[0].length; x++) {
                 System.out.print(pipe[i][x]);
+                if (pipe[i][x] == 5) {
+                    count++;
+                }
             }
-            System.out.println();
+            System.out.println("  Line " + (i + 1));
         }
-
+//        System.out.println();
+//        for (int i = 0; i < 140; i++) {
+//            System.out.print(pipe[62][i]);
+//        }
+//        System.out.println();
+//        for (int i = 0; i < 140; i++) {
+//            System.out.print(grid[62][i]);
+//        }
+        System.out.println();
         System.out.println("ans: " + count);
     }
 //------------------------------------------------------------------------------------------------------------------------------------------------------------
