@@ -11,36 +11,49 @@ public class Year23_Day13 {
         ArrayList<ArrayList<String>> grid = new ArrayList<>();
         ArrayList<Year23_Day13_Object> maps = new ArrayList<>();
         int index = 0;
+        int total = 0;
 
         while (s.hasNext()) {
             String line = s.nextLine();
             if (line.isEmpty()) {
                 maps.add(new Year23_Day13_Object(grid));
                 grid = new ArrayList<>();
-                index = 0;
+                index = -1;
             }
-            else {
-                ArrayList<String> inLine = new ArrayList<String>();
-                for (int i = 0; i <= line.length(); i++) {
-                    if (grid.size() <= index) {
-                        grid.add(new ArrayList<String>());
-                    }
-//                    System.out.println(grid.get(index));
-                    try {
-                        grid.get(index).add(line.substring(i, i + 1));
-                    }
-                    catch (IndexOutOfBoundsException e) {
-
-                    }
+            ArrayList<String> inLine = new ArrayList<String>();
+            for (int i = 0; i < line.length(); i++) {
+                if (grid.size() <= index) {
+                    grid.add(inLine);
                 }
+                try {
+                    inLine.add(line.substring(i, i + 1));
+                }
+                catch (IndexOutOfBoundsException e) {
 
+                    }
             }
             index++;
         }
         for (Year23_Day13_Object individual: maps) {
-            for (int x = 0; x < grid.size() - 1; x++) {
+            for (int x = 0; x < individual.getGrid().size(); x++) {
                 System.out.println(individual.getGrid().get(x));
             }
+            System.out.println();
         }
+        for (Year23_Day13_Object individual: maps) {
+            for (int x = 0; x < individual.getFlip().size(); x++) {
+                System.out.println(individual.getFlip().get(x));
+            }
+            System.out.println();
+        }
+        System.out.println(maps);
+        System.out.println(total);
+        for (Year23_Day13_Object individual: maps) {
+            System.out.println("Bad: " + individual.getBad());
+            int thing = individual.specialFindMirror();
+            System.out.println("Adding: " + thing);
+            total += thing;
+        }
+        System.out.println(total);
     }
 }
