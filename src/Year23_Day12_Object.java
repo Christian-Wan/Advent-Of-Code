@@ -45,6 +45,12 @@ public class Year23_Day12_Object {
 
     public int brokenLength(ArrayList<String> data, int index) { //make it go back then go forward
         int count = 0;
+        for (int i = index; i > 0; i--) {
+            if (data.get(i).equals(".")) {
+                index = i + 1;
+                break;
+            }
+        }
         for (int i = index; i < data.size(); i++) {
             if (data.get(i).equals("#")) {
                 count++;
@@ -66,25 +72,28 @@ public class Year23_Day12_Object {
                 if (brokenLength(minimum, i) > altData.get(part)) {
                     minimum.set(i, ".");
                 }
-                else if (brokenLength(minimum, i) == altData.get(part)) {
-                    part++;
-                    i += altData.get(part) - 1;
-                    for (int x = i; x < minimum.size(); x++) {
-                        if (minimum.get(x).equals("?")) {
-                            minimum.set(x, ".");
+
+            }
+            if (minimum.get(i).equals("#")) {
+                if (brokenLength(minimum, i) == altData.get(part)) {
+
+                    for (int x = 0; x < altData.get(part) - 1; x++) {
+                        if (minimum.get(i + x).equals("?")) {
+                            minimum.set(i + x, ".");
                             break;
                         }
                     }
+                    part++;
                 }
             }
-            if (part == altData.size()) {
-                for (int x = i; x < minimum.size(); x++) {
-                    i++;
-                    if (minimum.get(i).equals("?")) {
-                        minimum.set(i, ".");
-                    }
-                }
-            }
+//            if (part == altData.size()) {
+//                for (int x = i; x < minimum.size(); x++) {
+//                    i++;
+//                    if (minimum.get(i).equals("?")) {
+//                        minimum.set(i, ".");
+//                    }
+//                }
+//            }
         }
         return minimum;
     }

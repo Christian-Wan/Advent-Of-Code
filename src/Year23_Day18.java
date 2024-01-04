@@ -29,120 +29,240 @@ public class Year23_Day18 {
         grid.get(0).add(1);
         int x = 0;
         int y = 0;
+        int oldX = 0;
+        int oldY = 0;
+        long total = 0;
+        boolean topLeft = true;
+        boolean topRight = false;
+        boolean bottomRight = false;
+        boolean bottomLeft = false;
         for (int i = 0; i < directions.size(); i++) {
             System.out.println(directions.get(i));
+            if (topRight) {
+                System.out.println("topRight");
+            }
+            if (topLeft) {
+                System.out.println("topLeft");
+            }
+            if (bottomRight) {
+                System.out.println("bottomRight");
+            }
+            if (bottomLeft) {
+                System.out.println("bottomLeft");
+            }
+            int moveBy = Integer.parseInt(directions.get(i).substring(2)) + 1;
             if (directions.get(i).charAt(0) == '0') {
-                for (int a = 0; a < Integer.parseInt(directions.get(i).substring(2, directions.get(i).length())); a++) {
-                    x++;
-                    try {
-                        grid.get(y).set(x, 1);
-                    }
-                    catch (IndexOutOfBoundsException e) {
-                        for (int b = 0; b < grid.size(); b++) {
-                            grid.get(b).add(0);
+                if (topRight || bottomRight) {
+                    moveBy -= 1;
+                }
+                if (topRight || topLeft) {
+                    topRight = true;
+                    bottomRight = false;
+                    bottomLeft = false;
+                    topLeft = false;
+                }
+                else {
+                    bottomRight = true;
+                    topRight = false;
+                    bottomLeft = false;
+                    topLeft = false;
+                }
+                try {
+                    if (directions.get(i + 1).charAt(0) == '3') {
+                        if (topRight) {
+                            moveBy -= 1;
+                            topRight = false;
+                            topLeft = true;
                         }
-                        grid.get(y).set(x, 1);
+                    }
+                    if (directions.get(i + 1).charAt(0) == '1') {
+                        if (bottomRight) {
+                            moveBy -= 1;
+                            bottomRight = false;
+                            bottomLeft = true;
+                        }
                     }
                 }
+                catch (IndexOutOfBoundsException e) {
+                    if (directions.get(0).charAt(0) == '3') {
+                        if (topRight) {
+                            moveBy -= 1;
+                            topRight = false;
+                            topLeft = true;
+                        }
+                    }
+                    if (directions.get(0).charAt(0) == '1') {
+                        if (bottomRight) {
+                            moveBy -= 1;
+                            bottomRight = false;
+                            bottomLeft = true;
+                        }
+                    }
+                }
+                x += moveBy;
             }
             else if (directions.get(i).charAt(0) == '2') {
-                for (int a = 0; a < Integer.parseInt(directions.get(i).substring(2, directions.get(i).length())); a++) {
-                    x--;
-                    try {
-                        grid.get(y).set(x, 1);
-                    }
-                    catch (IndexOutOfBoundsException e) {
-                        for (int b = 0; b < grid.size(); b++) {
-                            grid.get(b).addFirst(0);
+                if (topLeft || bottomLeft) {
+                    moveBy -= 1;
+                }
+                if (topRight || topLeft) {
+                    topRight = false;
+                    bottomRight = false;
+                    bottomLeft = false;
+                    topLeft = true;
+                }
+                else {
+                    bottomRight = false;
+                    topRight = false;
+                    bottomLeft = true;
+                    topLeft = false;
+                }
+                try {
+                    if (directions.get(i + 1).charAt(0) == '3') {
+                        if (topLeft) {
+                            moveBy -= 1;
+                            topRight = true;
+                            topLeft = false;
                         }
-                        x = 0;
-                        grid.get(y).set(x, 1);
+                    }
+                    if (directions.get(i + 1).charAt(0) == '1') {
+                        if (bottomLeft) {
+                            moveBy -= 1;
+                            bottomRight = true;
+                            bottomLeft = false;
+                        }
                     }
                 }
+                catch (IndexOutOfBoundsException e) {
+                    if (directions.get(0).charAt(0) == '3') {
+                        if (topLeft) {
+                            moveBy -= 1;
+                            topRight = true;
+                            topLeft = false;
+                        }
+                    }
+                    if (directions.get(0).charAt(0) == '1') {
+                        if (bottomLeft) {
+                            moveBy -= 1;
+                            bottomRight = true;
+                            bottomLeft = false;
+                        }
+                    }
+                }
+                x -= moveBy;
             }
             else if (directions.get(i).charAt(0) == '3') {
-                for (int a = 0; a < Integer.parseInt(directions.get(i).substring(2, directions.get(i).length())); a++) {
-                    y--;
-                    try {
-                        grid.get(y).set(x, 1);
-                    }
-                    catch (IndexOutOfBoundsException e) {
-                        grid.addFirst(new ArrayList<>());
-                        for (int b = 0; b < grid.get(1).size(); b++) {
-                            grid.get(0).add(0);
+                if (topRight || topLeft) {
+                    moveBy -= 1;
+                }
+
+                if (topRight || bottomRight) {
+                    topRight = true;
+                    bottomRight = false;
+                    bottomLeft = false;
+                    topLeft = false;
+                }
+                else {
+                    bottomRight = false;
+                    topRight = false;
+                    bottomLeft = false;
+                    topLeft = true;
+                }
+                try {
+                    if (directions.get(i + 1).charAt(0) == '0') {
+                        if (topRight) {
+                            moveBy -= 1;
+                            bottomRight = true;
+                            topRight = false;
                         }
-                        y = 0;
-                        grid.get(y).set(x, 1);
+                    }
+                    if (directions.get(i + 1).charAt(0) == '2') {
+                        if (topLeft) {
+                            moveBy -= 1;
+                            topLeft = false;
+                            bottomLeft = true;
+                        }
                     }
                 }
+                catch (IndexOutOfBoundsException e) {
+                    if (directions.get(0).charAt(0) == '0') {
+                        if (topRight) {
+                            moveBy -= 1;
+                            bottomRight = true;
+                            topRight = false;
+                        }
+                    }
+                    if (directions.get(0).charAt(0) == '2') {
+                        if (topLeft) {
+                            moveBy -= 1;
+                            topLeft = false;
+                            bottomLeft = true;
+                        }
+                    }
+                }
+                y += moveBy;
+
             }
             else if (directions.get(i).charAt(0) == '1') {
-                for (int a = 0; a < Integer.parseInt(directions.get(i).substring(2, directions.get(i).length())); a++) {
-                    y++;
-                    try {
-                        grid.get(y).set(x, 1);
-                    }
-                    catch (IndexOutOfBoundsException e) {
-                        grid.add(new ArrayList<>());
-                        for (int b = 0; b < grid.get(0).size(); b++) {
-                            grid.get(y).add(0);
+                if (bottomRight || bottomLeft) {
+                    moveBy -= 1;
+                }
+
+                if (bottomLeft || topLeft) {
+                    topRight = false;
+                    bottomRight = false;
+                    bottomLeft = true;
+                    topLeft = false;
+                }
+                else {
+                    bottomRight = true;
+                    topRight = false;
+                    bottomLeft = false;
+                    topLeft = false;
+                }
+                try {
+                    if (directions.get(i + 1).charAt(0) == '0') {
+                        if (bottomRight) {
+                            moveBy -= 1;
+                            topRight = true;
+                            bottomRight = false;
                         }
-                        grid.get(y).set(x, 1);
+                    }
+                    if (directions.get(i + 1).charAt(0) == '2') {
+                        if (bottomLeft) {
+                            moveBy -= 1;
+                            topLeft = true;
+                            bottomLeft = false;
+                        }
                     }
                 }
+                catch (IndexOutOfBoundsException e) {
+                    if (directions.get(0).charAt(0) == '0') {
+                        if (bottomRight) {
+                            moveBy -= 1;
+                            topRight = true;
+                            bottomRight = false;
+                        }
+                    }
+                    if (directions.get(0).charAt(0) == '2') {
+                        if (bottomLeft) {
+                            moveBy -= 1;
+                            topLeft = true;
+                            bottomLeft = false;
+                        }
+                    }
+                }
+                y -= moveBy;
             }
+            System.out.println("(" + oldX + ", " + oldY + ")");
+            System.out.println("(" + x + ", " + y + ")");
+            System.out.println(((long) oldX * y) - ((long) x * oldY));
+            total += ((long) oldX * y) - ((long) x * oldY);
+            oldX = x;
+            oldY = y;
         }
-
-
-        for (int i = 0; i < grid.size(); i++) {
-            if (grid.get(i).get(0) != 1) {
-                grid.get(i).set(0, 9);
-            }
-            if (grid.get(i).get(grid.get(0).size() - 1) != 1) {
-                grid.get(i).set(grid.get(0).size() - 1, 9);
-            }
-        }
-        for (int i = 0; i < grid.get(0).size(); i++) {
-            if (grid.get(0).get(i) != 1) {
-                grid.get(0).set(i, 9);
-            }
-            if (grid.get(grid.size() - 1).get(i) != 1) {
-                grid.get(grid.size() - 1).set(i, 9);
-            }
-        }
-
-        int intersection;
-        for (int i = 1; i < grid.size(); i++) {
-            intersection = 0;
-            for (int a = 0; a < grid.get(0).size(); a++) {
-                if ((grid.get(i).get(a) == 1 && grid.get(i - 1).get(a) == 1)) {
-                    intersection++;
-                }
-                if (intersection % 2 == 0 && grid.get(i).get(a) != 1) {
-                    grid.get(i).set(a, 9);
-                }
-            }
-        }
-
-        int count = 0;
-        for (int i = 0; i < grid.size(); i++) {
-            for (int a = 0; a < grid.get(0).size(); a++) {
-                if (grid.get(i).get(a) == 1) {
-                    System.out.print(BLUE + grid.get(i).get(a) + RESET);
-                }
-                if (grid.get(i).get(a) == 9) {
-                    System.out.print(RED + grid.get(i).get(a) + RESET);
-                }
-                if (grid.get(i).get(a) == 0) {
-                    System.out.print(grid.get(i).get(a));
-                }
-                if (grid.get(i).get(a) == 1 || grid.get(i).get(a) == 0) {
-                    count++;
-                }
-            }
-            System.out.println();
-        }
-        System.out.println(count);
-
+        total = Math.abs(total);
+        total /= 2;
+        System.out.println(total);
     }
 }
