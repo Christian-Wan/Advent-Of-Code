@@ -13,7 +13,7 @@ public class Year24_Day16 {
         ArrayList<ArrayList<String>> grid = new ArrayList<>();
         HashSet<String> visited = new HashSet<>();
         HashSet<String> unvisited = new HashSet<>();
-        HashMap<String, ArrayList<ArrayList<String>>> table = new HashMap<>(); //First arrayList will contain 2 strings being score, direction
+        HashMap<String, Year24_Day16_Object> table = new HashMap<>();
         int startRow = 0;
         int startColumn = 1;
 
@@ -36,24 +36,90 @@ public class Year24_Day16 {
             count++;
             grid.add(next);
         }
-
-
-        while (!visited.isEmpty()) {
-            unvisited.add(startRow + "," + startColumn);
-            visited.remove(startRow + "," + startColumn);
+        System.out.println(unvisited);
+        table.put(startRow + "," + startColumn, new Year24_Day16_Object(0, 1, "", new HashSet<>()));
+        while (!unvisited.isEmpty()) {
+            String current = "";
+            for (String key: table.keySet()) {
+                if (unvisited.contains(key)) {
+                    current = key;
+                }
+            }
+            startRow = Integer.parseInt(current.substring(0, current.indexOf(",")));
+            startColumn = Integer.parseInt(current.substring(current.indexOf(",") + 1));
+            unvisited.remove(current);
+            visited.add(current);
             if (grid.get(startRow - 1).get(startColumn).equals("E") || grid.get(startRow - 1).get(startColumn).equals(".")) {
-                if (table.keySet().contains((startRow - 1) + "," + startColumn) {
-                    table
+                String up = (startRow - 1) + "," + startColumn;
+                int scoreAdd = 1;
+                HashSet<String> nextHashSet = new HashSet<>(table.get(current).getPossiblePaths());
+                nextHashSet.add(current);
+                if (table.get(current).getDirection() != 0) {
+                    scoreAdd += 1000;
+                }
+                if (table.keySet().contains(up)) {
+                    if (table.get(up).getScore() > table.get(current).getScore() + scoreAdd) {
+                        table.replace(up, new Year24_Day16_Object(table.get(current).getScore() + scoreAdd, 0, current, nextHashSet));
+                    }
+                }
+                else {
+                    table.put(up, new Year24_Day16_Object(table.get(current).getScore() + scoreAdd, 0, current, nextHashSet));
                 }
             }
             if (grid.get(startRow).get(startColumn + 1).equals("E") || grid.get(startRow).get(startColumn + 1).equals(".")) {
+                String right = (startRow) + "," + (startColumn + 1);
+                int scoreAdd = 1;
+                HashSet<String> nextHashSet = new HashSet<>(table.get(current).getPossiblePaths());
+                nextHashSet.add(current);
+                if (table.get(current).getDirection() != 1) {
+                    scoreAdd += 1000;
+                }
+                if (table.keySet().contains(right)) {
+                    if (table.get(right).getScore() > table.get(current).getScore() + scoreAdd) {
+                        table.replace(right, new Year24_Day16_Object(table.get(current).getScore() + scoreAdd, 1, current, nextHashSet));
+                    }
+                }
+                else {
+                    table.put(right, new Year24_Day16_Object(table.get(current).getScore() + scoreAdd, 1, current, nextHashSet));
+                }
             }
             if (grid.get(startRow + 1).get(startColumn).equals("E") || grid.get(startRow + 1).get(startColumn).equals(".")) {
+                String down = (startRow + 1) + "," + (startColumn);
+                int scoreAdd = 1;
+                HashSet<String> nextHashSet = new HashSet<>(table.get(current).getPossiblePaths());
+                nextHashSet.add(current);
+                if (table.get(current).getDirection() != 2) {
+                    scoreAdd += 1000;
+                }
+                if (table.keySet().contains(down)) {
+                    if (table.get(down).getScore() > table.get(current).getScore() + scoreAdd) {
+                        table.replace(down, new Year24_Day16_Object(table.get(current).getScore() + scoreAdd, 1, current, nextHashSet));
+                    }
+                }
+                else {
+                    table.put(down, new Year24_Day16_Object(table.get(current).getScore() + scoreAdd, 1, current, nextHashSet));
+                }
             }
             if (grid.get(startRow).get(startColumn - 1).equals("E") || grid.get(startRow).get(startColumn - 1).equals(".")) {
+                String left = (startRow) + "," + (startColumn - 1);
+                int scoreAdd = 1;
+                HashSet<String> nextHashSet = new HashSet<>(table.get(current).getPossiblePaths());
+                nextHashSet.add(current);
+                if (table.get(current).getDirection() != 3) {
+                    scoreAdd += 1000;
+                }
+                if (table.keySet().contains(left)) {
+                    if (table.get(left).getScore() > table.get(current).getScore() + scoreAdd) {
+                        table.replace(left, new Year24_Day16_Object(table.get(current).getScore() + scoreAdd, 1, current, nextHashSet));
+                    }
+                }
+                else {
+                    table.put(left, new Year24_Day16_Object(table.get(current).getScore() + scoreAdd, 1, current, nextHashSet));
+                }
             }
         }
-
+        System.out.println(table.keySet());
+        System.out.println(table.get("1,13").getScore());
     }
 
 
@@ -62,5 +128,7 @@ public class Year24_Day16 {
     //    3   1
     //      2
 
+    public static void replaceFuture(int newScore, Year24_Day16_Object current) {
 
+    }
 }
